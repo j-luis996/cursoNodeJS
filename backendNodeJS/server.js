@@ -23,11 +23,11 @@ router.post('/message', function (req,res){
       res.send('Hola desde post');
 });
 
-router.delete('/message', function (req,res){
+router.delete('/message', function (req,res){//esto sera mas de post pero equisde
       console.log(req.query);
       console.log(req.body);
-      res.send('mensaje '+ req.body.text+' correctamente...');
-
+      // res.send('mensaje '+ req.body.text+' correctamente...');
+      res.status(201).send({error: "",body: 'Creado correctamente'});
 });
 
 //app.use('/', function (req,res){
