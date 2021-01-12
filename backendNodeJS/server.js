@@ -13,6 +13,9 @@ app.use(router);
 
 router.get('/message', function (req,res){
       console.log(req.headers);
+      res.header({
+            "custom-herder": "valor personalizado"
+      });
       res.send('Hola desde get');
 });
 
