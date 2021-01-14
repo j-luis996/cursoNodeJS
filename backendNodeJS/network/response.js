@@ -1,7 +1,7 @@
 exports.success = (req, res, message, status) => {
       res.status(status || 200).send({
             error: '',
-            body: message
+            body: message,
       });
 }
 exports.error = (req, res, message, status, origen) => {

@@ -1,4 +1,6 @@
-function addMessages(user, message){
+const store = require('./store');
+
+const addMessages = (user, message) => {
       return new Promise ((resolve, reject) => {
             if (!user || !message){
                   console.error('[messageController] Mensaje incompleto');
@@ -9,11 +11,20 @@ function addMessages(user, message){
                   message: message,
                   date: new Date(),
             };
-            console.log(fullMessage);
+            
+            store.addMessage(fullMessage);
             resolve(fullMessage);
       });
       
 }
+
+const getMessage = () => {
+      return new Promise((resolve,reject) => {
+            resolve(store.getMessage());
+      })
+}
+
 module.exports = {
-      addMessages,
+      add: addMessages,
+      list: getMessage,
 };
