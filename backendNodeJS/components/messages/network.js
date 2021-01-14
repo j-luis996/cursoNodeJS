@@ -22,5 +22,13 @@ router.post('/', (req, res) => {
                   response.error(req, res, 'Informacion invalida',400,e);
             });      
 });
-
+router.patch('/:id',(req, res) => {//esta peticion se llama: http://IP:8080/message/ID_USUARIO
+      controller.update(req.params.id, req.body.message)
+            .then((data) => {
+                  response.success(req, res, data, 200);
+            })
+            .catch(err =>{
+                  response.error(req, res, 'Error interno', 500, err);
+            });
+});
 module.exports = router;
