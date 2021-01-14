@@ -27,15 +27,40 @@ const getMessage = (filterUser) => {
 const updateMessage = (id, message) =>{
       return new Promise(async (resolve, reject)=>{
             if(!id || !message){
-                  reject('Invalid data');
+                  reject('[Controller] Invalid data');
                   return false;
             }
-            const result = await store.updateText(id,message);
-            resolve(result);
+            await store.updateText(id,message)
+                  .then(resultado =>{
+                        if(resultado){
+                              resolve(resultado);
+                        }else{
+                              reject('[Controller] No se encontro el dato para actualizar');
+                        }
+                  });
+            
+      });
+}
+
+const deleteMessage = (id) => {
+      return new Promise(async (resolve,reject) => {
+            if(!id){
+                  reject('ID invalido');
+            }
+            await store.removeMessage(id)
+                  .then((resultado) => {
+                        if(resultado){
+                              resolve();
+                        }else{
+                              reject('[Controller] El dato no existe en Store');
+                        }
+                  })
+                  .catch(err => reject(err));
       });
 }
 module.exports = {
       add: addMessages,
       list: getMessage,
       update: updateMessage,
+      delete: deleteMessage,
 };

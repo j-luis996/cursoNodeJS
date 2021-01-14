@@ -38,4 +38,9 @@ router.patch('/:id',(req, res) => {//esta peticion se llama: http://IP:8080/mess
                   response.error(req, res, 'Error interno', 500, err);
             });
 });
+router.delete('/:id', (req,res) => {
+      controller.delete(req.params.id)
+            .then(() => response.success(req, res, `Mensaje ${req.params.id} eliminado`, 200))
+            .catch(err => response.error(req, res, 'Error interno', 500, err));
+});
 module.exports = router;
