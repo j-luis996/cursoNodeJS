@@ -58,6 +58,7 @@ const deleteMessage = (id) => {
                   .catch(err => reject(err));
       });
 }
+
 module.exports = {
       add: addMessages,
       list: getMessage,
