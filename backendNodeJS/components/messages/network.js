@@ -1,23 +1,25 @@
 const express = require('express');
 const router = express.Router();
 const response = require('../../network/response');
+const controller = require('./controler');
 
-router.get('/', function (req,res){
+router.get('/', (req, res) => {
       console.log(req.headers);
       res.header({
             "custom-herder": "valor personalizado"
       });
       // res.send('Hola desde get');
-      response.success(req,res,'Lista de mensajes');
+      response.success(req, res, 'Lista de mensajes');
 });
 
-router.post('/', function (req,res){
-      console.log(req.query);
-      if(req.query.error == 'ok'){
-            response.error(req,res,'error simulado',401);
-      }else{
-            response.success(req,res,'lista de mensajes',201);
-      }
+router.post('/', (req, res) => {
+      controller.addMessages(req.body.user, req.body.message)
+            .then((fullMessage) => {
+                  response.success(req, res, fullMessage, 201);
+            })
+            .catch(e => {
+                  response.error(req, res, 'Informacion invalida',400,'error en el controlador');
+            });
       // res.status(201).send({error: "",body: 'Creado correctamente'});
       
 });
