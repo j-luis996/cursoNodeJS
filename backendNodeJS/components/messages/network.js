@@ -3,8 +3,15 @@ const router = express.Router();
 const response = require('../../network/response');
 const controller = require('./controler');
 
+/**para usar la funcion user:
+ * http://<IP>/message?user=<ususario_desedo>
+ * nos permite filtrar
+ * http://<IP>/message
+ * lista todos los mensajes
+ */
 router.get('/', (req, res) => {
-      controller.list()
+      const filterMessage = req.query.user || null;
+      controller.list(filterMessage)
       .then((messageList) => {
             response.success(req, res, messageList, 200);
       })
