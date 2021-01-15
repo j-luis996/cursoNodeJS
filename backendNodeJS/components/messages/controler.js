@@ -27,7 +27,7 @@ const getMessage = (filterUser) => {
 const updateMessage = (id, message) =>{
       return new Promise(async (resolve, reject)=>{
             if(!id || !message){
-                  reject('[Controller] Invalid data');
+                  reject('[messageController] Invalid data');
                   return false;
             }
             await store.updateText(id,message)
@@ -35,7 +35,7 @@ const updateMessage = (id, message) =>{
                         if(resultado){
                               resolve(resultado);
                         }else{
-                              reject('[Controller] No se encontro el dato para actualizar');
+                              reject('[messageController] No se encontro el dato para actualizar');
                         }
                   });
             
