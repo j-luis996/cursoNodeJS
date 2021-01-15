@@ -15,6 +15,14 @@ const addUser = (name) => {
       });
       
 }
+
+const getUser = (filterUser) => {
+      return new Promise((resolve,reject) => {
+            resolve(store.getUser(filterUser));
+      })
+}
+
 module.exports = {
       add: addUser,
+      list: getUser,
 }
