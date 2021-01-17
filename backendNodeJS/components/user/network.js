@@ -4,10 +4,10 @@ const response = require('../../network/response');
 const controller = require('./controller');
 
 /**para usar la funcion user:
- * http://<IP>/message?user=<ususario_desedo>
+ * http://<IP>/user?user=<ususario_desedo>
  * nos permite filtrar
- * http://<IP>/message
- * lista todos los mensajes
+ * http://<IP>/user
+ * lista todos los usuarios
  */
 router.get('/', (req, res) => {
       const filterUser = req.query.user || null;

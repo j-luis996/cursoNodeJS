@@ -3,7 +3,10 @@ const mongoose = require('mongoose');
 const schema = mongoose.Schema;
 
 const mySchema = new schema({
-      user: String,
+      user: {
+            type: schema.ObjectId,
+            ref: 'User',
+      },
       message: {
             type: String,
             require: true,
