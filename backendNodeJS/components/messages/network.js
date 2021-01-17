@@ -21,7 +21,7 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-      controller.add(req.body.user, req.body.message)
+      controller.add(req.body.chat,req.body.user, req.body.message)
             .then((fullMessage) => {
                   response.success(req, res, fullMessage, 201);
             })

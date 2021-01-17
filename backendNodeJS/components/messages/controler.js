@@ -1,12 +1,13 @@
 const store = require('./store');
 
-const addMessages = (user, message) => {
+const addMessages = (chat,user, message) => {
       return new Promise ((resolve, reject) => {
-            if (!user || !message){
+            if (!chat || !user || !message){
                   console.error('[messageController] Mensaje incompleto');
                   return reject('Los datos son incorrectos');
             }
             const fullMessage = {
+                  chat: chat,
                   user: user,
                   message: message,
                   date: new Date(),
