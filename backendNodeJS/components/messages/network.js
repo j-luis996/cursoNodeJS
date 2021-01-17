@@ -5,7 +5,7 @@ const controller = require('./controler');
 const multer = require('multer');
 
 const upload = multer({
-      dest: 'upload/',
+      dest: 'public/files/',
 });
 
 /**para usar la funcion user:
@@ -26,7 +26,7 @@ router.get('/', (req, res) => {
 });
 
 router.post('/',upload.single('file'), (req, res) => {
-      controller.add(req.body.chat,req.body.user, req.body.message)
+      controller.add(req.body.chat,req.body.user, req.body.message,req.file)
             .then((fullMessage) => {
                   response.success(req, res, fullMessage, 201);
             })
