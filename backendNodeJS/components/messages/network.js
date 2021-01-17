@@ -2,6 +2,11 @@ const express = require('express');
 const router = express.Router();
 const response = require('../../network/response');
 const controller = require('./controler');
+const multer = require('multer');
+
+const upload = multer({
+      dest: 'upload/',
+});
 
 /**para usar la funcion user:
  * http://<IP>/message?user=<ususario_desedo>
@@ -20,7 +25,7 @@ router.get('/', (req, res) => {
       })
 });
 
-router.post('/', (req, res) => {
+router.post('/',upload.single('file'), (req, res) => {
       controller.add(req.body.chat,req.body.user, req.body.message)
             .then((fullMessage) => {
                   response.success(req, res, fullMessage, 201);
